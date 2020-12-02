@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://alejandro99:Q71bKmjKeoDG6tCI@cluster0.lgrvd.mongodb.net/contacts?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://alejandro99:Q71bKmjKeoDG6tCI@cluster0.lgrvd.mongodb.net/contacts?retryWrites=true&w=majority",
+  "jwtSecret": "'-tn^@k!5Q>%SR^("
 }
