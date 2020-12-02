@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const { check, validationResult } = require('express-validator');
+const auth = require('../middlewares/auth');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -10,8 +11,13 @@ const bcrypt = require('bcryptjs');
 // @desc    Get the current loggged in user
 // @access  Private
 
-router.get('/', (req, res) => {
-  res.send('Logged User');
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 });
 
 // @route   POST api/v1/auth
@@ -55,7 +61,7 @@ router.post(
         payload,
         config.get('jwtSecret'),
         {
-          expiresIn: '90d',
+          expiresIn: config.get('jwtExpiresIn'),
         },
         (err, token) => {
           if (err) throw err;
