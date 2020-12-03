@@ -23,6 +23,10 @@ const Register = () => {
     e.preventDefault();
     if (name === '' || email === '' || password === '' || password2 === '') {
       setAlert('Please fill all the fields', 'danger');
+    } else if (password !== password2) {
+      setAlert('Passwords does not match', 'danger');
+    } else {
+      setAlert('Register Submit');
     }
   };
 
@@ -33,27 +37,41 @@ const Register = () => {
       </h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input name="name" type="text" value={name} onChange={onChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email Address:</label>
-          <input name="email" type="email" value={email} onChange={onChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="name">Name</label>
           <input
-            name="password"
+            id="name"
+            type="text"
+            name="name"
+            value={name}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
             type="password"
+            name="password"
             value={password}
             onChange={onChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password2">Confirm Password:</label>
+          <label htmlFor="password2">Confirm Password</label>
           <input
-            name="password2"
+            id="password2"
             type="password"
+            name="password2"
             value={password2}
             onChange={onChange}
           />
